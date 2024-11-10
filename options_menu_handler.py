@@ -1,4 +1,4 @@
-"""Manage main menu"""
+"""Manage main menu."""
 
 import argparse
 import hashlib
@@ -11,13 +11,13 @@ from main_menu import main
 
 
 def path():
-    """Find the path where the script is located"""
+    """Find the path where the script is located."""
     main_path = os.path.dirname(os.path.abspath(__file__))
     return main_path
 
 
 def scripts_execution_info(root_path, filename):
-    """Show hash and datetime"""
+    """Show hash and datetime."""
     # execution date
     get_date = datetime.datetime.now()
     date = get_date.strftime("%d-%m-%Y %H:%M:%S.%f")
@@ -40,7 +40,7 @@ def scripts_execution_info(root_path, filename):
 
 
 def input_help_validator(help_command):
-    """Validate help command"""
+    """Validate help command."""
     attempts = 0
     max_attempts = 3
     while attempts < max_attempts:
