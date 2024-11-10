@@ -1,10 +1,11 @@
 """This script makes a report with the file made from nmap script."""
+
 import requests
 import logging
 import re
 import argparse
 import json
-
+from py_scripts_handler import py_menu
 
 def file_with_content(file_path):
     """Check if the given file is or not a txt file with the content."""
@@ -98,6 +99,7 @@ if open_ports:
                 state = line.split()[1]
             else:
                 logging.error("Not enough information. Exit...")
+                py_menu()
     try:
         for port in ports:
             name = f"Report_Port.txt"
@@ -107,9 +109,9 @@ if open_ports:
                     "ip": ip_address,
                     "categories": 14,
                     "comment": f"""
-                    The IP has been scanned and found the port {port} is open,
-                    some vulnerabilities have likely been found.
-                    """,
+                     The IP has been scanned and found the port {port} is open,
+                     some vulnerabilities have likely been found.
+                     """,
                 }
                 headers = {"Accept": "application/json", "Key": api_key}
                 response = requests.post(url, headers=headers, data=parameters)
@@ -117,7 +119,7 @@ if open_ports:
                 logging.info(information)
                 with open(f"{name}", "w") as f:
                     f.write(json.dumps(information, indent=4))
-                logging.INFO("Archivo guardado")
+                logging.INFO("Saved file.")
             except requests.exceptions.RequestException as e:
                 logging.error(
                   f"An error occurred while making your request: {e}")
