@@ -3,7 +3,7 @@
 # $1 is the ip to scan
 # $2 is the range ports, it has to be a only one like 8080 or a range like 0-255
 
-path="$PWD/scanning.txt"
+path="$PWD/bash-reports/scanning.txt"
 errors="$PWD/errorsPortScan.log"
 # Create a new file
 touch $path
@@ -19,7 +19,7 @@ else
 fi
 
 # Create the path for the port open Scan, vulnerabilities scan, and errors
-path="$PWD/vulnerabilities.txt"
+path="$PWD/bash-reports/vulnerabilities.txt"
 pathScan="$PWD/test.txt"
 errorsV="$PWD/errorsVuln.log"
 # Create a new file for the open ports scan
