@@ -102,7 +102,7 @@ if open_ports:
                 py_menu()
     try:
         for port in ports:
-            name = f"Report_Port.txt"
+            name = f"report_ip.txt"
             try:
                 url = "https://api.abuseipdb.com/api/v2/report"
                 parameters = {
