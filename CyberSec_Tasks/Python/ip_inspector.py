@@ -5,7 +5,6 @@ as well as blacklist depending on the trust of the IP
 and check a block of IPs.
 """
 
-
 import argparse
 import datetime
 import json
@@ -13,7 +12,7 @@ import logging
 import re
 import requests
 import os
-from menu import main_menu
+from py_scripts_handler import py_menu
 
 
 def validate_ip(ip):
@@ -194,4 +193,4 @@ except Exception as e:
 
 logging.info('Scan Completion')
 
-main_menu()
+py_menu()
