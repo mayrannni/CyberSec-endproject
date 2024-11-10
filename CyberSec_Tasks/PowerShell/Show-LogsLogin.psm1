@@ -60,14 +60,14 @@ function Show-LogsLogin {
             $message = $session.Message
             $SessionType = if ($session.Id -eq 4648) {"Explicit"} else {"Interactive"}
 
-            ">> Date (Time created): $date" | Out-File "$PSScriptRoot\ps-reports\Results-LogsLogins.txt"
-            ">> Session Type: $SessionType" >> "$PSScriptRoot\ps-reports\Results-LogsLogins.txt"
-            ">> Message." >> "$PSScriptRoot\ps-reports\Results-LogsLogins.txt"
-            "$message" >> "$PSScriptRoot\ps-reports\Results-LogsLogins.txt"
+            ">> Date (Time created): $date" | Out-File "$PSScriptRoot\ps-reports\Show-LogsLogins.txt"
+            ">> Session Type: $SessionType" >> "$PSScriptRoot\ps-reports\Show-LogsLogins.txt"
+            ">> Message." >> "$PSScriptRoot\ps-reports\Show-LogsLogins.txt"
+            "$message" >> "$PSScriptRoot\ps-reports\Show-LogsLogins.txt"
             }
 
         Log-Message -Message "The analysis has been carried out successfully"
-        Log-Message -Message "Your file has been created in $PSScriptRoot\ps-reports\Results-LogsLogins.txt"
+        Log-Message -Message "Your file has been created in $PSScriptRoot\ps-reports\Show-LogsLogins.txt"
         
         } catch {
         #checks for administrator permissions by identify the users role
