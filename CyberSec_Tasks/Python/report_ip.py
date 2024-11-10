@@ -123,10 +123,14 @@ if open_ports:
             except requests.exceptions.RequestException as e:
                 logging.error(
                   f"An error occurred while making your request: {e}")
+                py_menu()
             except Exception as e:
                 logging.error(f"Error: {e}")
+                py_menu()
     except Exception as error:
         logging.error("Unexpected error: %s" % error)
+        py_menu()
 else:
     logging.error("There is no valuable information in this report.")
     logging.error("Try again later...")
+    py_menu()
