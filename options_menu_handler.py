@@ -99,7 +99,7 @@ if os == "win32":
             filename = r"\PowerShell\Get-PcInformation.psm1"
             main_path = path()
             secondary_path = main + filename
-            if os.path.exists(sec):
+            if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("")
@@ -116,7 +116,7 @@ if os == "win32":
             filename = r"\PowerShell\Request-ApiHashBased.psm1"
             main_path = path()
             secondary_path = main_path + filename
-            if os.path.exists(sec):
+            if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
@@ -130,7 +130,7 @@ if os == "win32":
             filename = r"\PowerShell\Show-HiddenFiles.psm1"
             main_path = path()
             secondary_path = main_path + filename
-            if os.path.exists(sec):
+            if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
@@ -144,7 +144,7 @@ if os == "win32":
             filename = r"\PowerShell\Show-LogsLogin.psm1"
             main_path = path()
             secondary_path = main_path + filename
-            if os.path.exists(sec):
+            if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
