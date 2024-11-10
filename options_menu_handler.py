@@ -75,27 +75,27 @@ def input_help_validator(help_command):
 
 mode = """
 Run the next command:
-python "/the/file/path/options_menu_handler.py" -opP "1" -opS "3" """
+python "/the/file/path/options_menu_handler.py" -menu_option "1" -submenu_option "3" """
 
 parser = argparse.ArgumentParser(
     description="", epilog=mode, formatter_class=argparse.RawDescriptionHelpFormatter
 )
 parser.add_argument(
-    "-opP",
-    dest="opP",
+    "-menu_option",
+    dest="menu_option",
     help="Option to be selected from the main menu.",
     required=True,
     type=str,
 )
 parser.add_argument(
-    "-opS", dest="opS", help="Option to be selected from the main menu.", type=str
+    "-submenu_option", dest="submenu_option", help="Option to be selected from the main menu.", type=str
 )
 param = parser.parse_args()
 
 os = sys.platform
 if os == "win32":
-    if param.opP == "1":
-        if param.opS == "1":
+    if param.menu_option == "1":
+        if param.submenu_option == "1":
             filename = r"\PowerShell\Get-PcInformation.psm1"
             main_path = path()
             sec = main + filename
@@ -112,7 +112,7 @@ if os == "win32":
             else:
                 print("File does not exist.")
                 time.sleep(2)
-        elif param.opS == "2":
+        elif param.submenu_option == "2":
             filename = r"\PowerShell\Request-ApiHashBased.psm1"
             main_path = path()
             sec = main_path + filename
@@ -126,7 +126,7 @@ if os == "win32":
             else:
                 print("File does not exist.")
                 time.sleep(2)
-        elif param.opS == "3":
+        elif param.submenu_option == "3":
             filename = r"\PowerShell\Show-HiddenFiles.ps1"
             main_path = path()
             sec = main_path + filename
@@ -140,7 +140,7 @@ if os == "win32":
             else:
                 print("File does not exist.")
                 time.sleep(2)
-        elif param.opS == "4":
+        elif param.submenu_option == "4":
             filename = r"\PowerShell\Show-LogsLogin.psm1"
             main_path = path()
             sec = main_path + filename
@@ -156,11 +156,11 @@ if os == "win32":
                 time.sleep(2)
         else:
             print("Opciob no valida")
-    elif param.opP == "2":
+    elif param.menu_option == "2":
         print("You cannot run this option as your operating system is Windows.")
         print("Redirigiendo al menu  pricipal... \n")
         time.sleep(2)
-    elif param.opP == "3":
+    elif param.menu_option == "3":
         filename = r"/Python/main_menu.py"
         main_path = path()
         sec = main_path + filename
@@ -170,11 +170,11 @@ if os == "win32":
         else:
             print("File does not exist.")
 elif os == "linux":
-    if param.opP == "1":
+    if param.menu_option == "1":
         print("You cannot run this option,", "as your OS is Linux.")
         print("Redirecting to main menu...\n")
-    elif param.opP == "2":
-        if param.opS == "1":
+    elif param.menu_option == "2":
+        if param.submenu_option == "1":
             filename = r"/Bash/scanning.sh"
             main_path = path()
             sec = main_path + filename
@@ -188,7 +188,7 @@ elif os == "linux":
                 )
                 name = r"/Bash/bash-reports/scanning.txt"
                 scripts_execution_info(main_path, name)
-        elif param.opS == "2":
+        elif param.submenu_option == "2":
             filename = r"/Bash/ssh_honeypot.sh"
             main_path = path()
             sec = main_path + filename
@@ -202,12 +202,12 @@ elif os == "linux":
                 )
                 name = r"/Bash/bash-reports/ssh_honeypot.txt"
                 scripts_execution_info(main_path, name)
-        elif param.opS == "0":
+        elif param.submenu_option == "0":
             print("Back to main menu, bye!")
             time.sleep(2)
         else:
             print("Option is not within the established parameters.")
-    elif param.opP == "3":
+    elif param.menu_option == "3":
         filename = r"/Python/main_menu.py"
         main_path = path()
         sec = main_path + filename
@@ -217,11 +217,11 @@ elif os == "linux":
         else:
             print("File does not exist.")
 elif os == "darwin":
-    if param.opP == "1":
+    if param.menu_option == "1":
         print("You cannot run this option,", "as your OS is Linux.")
         print("Redirecting to main menu...\n")
-    elif param.opP == "2":
-        if param.opS == "1":
+    elif param.menu_option == "2":
+        if param.submenu_option == "1":
             filename = r"/Bash/scanning.sh"
             main_path = path()
             sec = main_path + filename
@@ -235,7 +235,7 @@ elif os == "darwin":
                 )
                 name = r"/Bash/bash-reports/scanning.txt"
                 scripts_execution_info(main_path, name)
-        elif param.opS == "2":
+        elif param.submenu_option == "2":
             filename = r"/Bash/ssh_honeypot.sh"
             main_path = path()
             sec = main_path + filename
@@ -249,12 +249,12 @@ elif os == "darwin":
                 )
                 name = r"/Bash/bash-reports/ssh_honeypot.txt"
                 scripts_execution_info(main_path, name)
-        elif param.opS == "0":
+        elif param.submenu_option == "0":
             print("Back to main menu, bye!")
             time.sleep(2)
         else:
             print("Option is not within the established parameters.")
-    elif param.opP == "3":
+    elif param.menu_option == "3":
         filename = r"/Python/main_menu.py"
         main_path = path()
         sec = main_path + filename
