@@ -188,7 +188,9 @@ elif os == "linux":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/Bash/bash-reports/scanning.txt"
+                name = r"/Bash/bash-reports/port_scan.txt"
+                scripts_execution_info(main_path, name)
+                name = r"/Bash/bash-reports/vulnerabilities_scan.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
             filename = r"/Bash/ssh_honeypot.sh"
@@ -240,7 +242,9 @@ elif os == "darwin":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/Bash/bash-reports/scanning.txt"
+                name = r"/Bash/bash-reports/port_scan.txt"
+                scripts_execution_info(main_path, name)
+                name = r"/Bash/bash-reports/vulnerabilities_scan.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
             help_command = ["Bash", secondary_path, "-h"]
