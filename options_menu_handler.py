@@ -98,7 +98,7 @@ if os == "win32":
         if param.submenu_option == "1":
             filename = r"\PowerShell\Get-PcInformation.psm1"
             main_path = path()
-            sec = main + filename
+            secondary_path = main + filename
             if os.path.exists(sec):
                 help_command = ["PowerShell", sec, "--help"]
                 input_help_validator(help_command)
@@ -115,7 +115,7 @@ if os == "win32":
         elif param.submenu_option == "2":
             filename = r"\PowerShell\Request-ApiHashBased.psm1"
             main_path = path()
-            sec = main_path + filename
+            secondary_path = main_path + filename
             if os.path.exists(sec):
                 help_command = ["PowerShell", sec, "--help"]
                 input_help_validator(help_command)
@@ -129,7 +129,7 @@ if os == "win32":
         elif param.submenu_option == "3":
             filename = r"\PowerShell\Show-HiddenFiles.psm1"
             main_path = path()
-            sec = main_path + filename
+            secondary_path = main_path + filename
             if os.path.exists(sec):
                 help_command = ["PowerShell", sec, "--help"]
                 input_help_validator(help_command)
@@ -143,7 +143,7 @@ if os == "win32":
         elif param.submenu_option == "4":
             filename = r"\PowerShell\Show-LogsLogin.psm1"
             main_path = path()
-            sec = main_path + filename
+            secondary_path = main_path + filename
             if os.path.exists(sec):
                 help_command = ["PowerShell", sec, "--help"]
                 input_help_validator(help_command)
@@ -163,7 +163,7 @@ if os == "win32":
     elif param.menu_option == "3":
         filename = r"/Python/main_menu.py"
         main_path = path()
-        sec = main_path + filename
+        secondary_path = main_path + filename
         if os.path.exists(sec):
             # mandar a llamar al script ya definido de python
             subprocess.run("python", sec, capture_output=True, text=True)
@@ -177,7 +177,7 @@ elif os == "linux":
         if param.submenu_option == "1":
             filename = r"/Bash/scanning.sh"
             main_path = path()
-            sec = main_path + filename
+            secondary_path = main_path + filename
             if os.path.exists(sec):
                 subprocess.run(
                     ["Bash", sec],
@@ -191,7 +191,7 @@ elif os == "linux":
         elif param.submenu_option == "2":
             filename = r"/Bash/ssh_honeypot.sh"
             main_path = path()
-            sec = main_path + filename
+            secondary_path = main_path + filename
             if os.path.exists(sec):
                 subprocess.run(
                     ["Bash", sec],
@@ -210,7 +210,7 @@ elif os == "linux":
     elif param.menu_option == "3":
         filename = r"/Python/main_menu.py"
         main_path = path()
-        sec = main_path + filename
+        secondary_path = main_path + filename
         if os.path.exists(sec):
             # mandar a llamar al script ya definido de python
             subprocess.run("python", "main_menu.py", capture_output=True, text=True)
@@ -224,7 +224,7 @@ elif os == "darwin":
         if param.submenu_option == "1":
             filename = r"/Bash/scanning.sh"
             main_path = path()
-            sec = main_path + filename
+            secondary_path = main_path + filename
             if os.path.exists(sec):
                 subprocess.run(
                     ["Bash", sec],
@@ -238,7 +238,7 @@ elif os == "darwin":
         elif param.submenu_option == "2":
             filename = r"/Bash/ssh_honeypot.sh"
             main_path = path()
-            sec = main_path + filename
+            secondary_path = main_path + filename
             if os.path.exists(sec):
                 subprocess.run(
                     ["Bash", sec],
@@ -257,7 +257,7 @@ elif os == "darwin":
     elif param.menu_option == "3":
         filename = r"/Python/main_menu.py"
         main_path = path()
-        sec = main_path + filename
+        secondary_path = main_path + filename
         if os.path.exists(sec):
             subprocess.run("python", "main_menu.py", capture_output=True, text=True)
         else:
