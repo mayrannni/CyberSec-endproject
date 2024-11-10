@@ -40,7 +40,7 @@ def input_help_validator(help_command):
         time.sleep(3)
 
 
-def main_menu():
+def py_menu():
     """Show menu for manage scripts"""
     print("Cybersecutiry Tasks in Python")
     print("1. Scan vulnerabilities for websites")
