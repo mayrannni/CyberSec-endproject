@@ -8,7 +8,7 @@ import os
 import re
 import subprocess
 import webbrowser
-from menu import main_menu
+from py_scripts_handler import py_menu
 
 def validate_ip(ip):
     """Validate a single IP."""
@@ -127,4 +127,4 @@ if nmap_exist == 'True':
     logging.info('Nmap is installed')
     vulnerability_scanning(param)
 
-main_menu()
+py_menu()
