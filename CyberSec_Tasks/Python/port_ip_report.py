@@ -1,4 +1,4 @@
-"""This script makes a report with the file make from nmap script."""
+"""This script makes a report with the file made from nmap script."""
 import requests
 import logging
 import re
@@ -7,7 +7,7 @@ import json
 
 
 def file_with_content(file_path):
-    """Check if the given file is or not a txt file with content."""
+    """Check if the given file is or not a txt file with the content."""
     if re.search(r'\.txt$', file_path):
         try:
             with open(file_path, 'r') as file_content:
@@ -23,11 +23,11 @@ def file_with_content(file_path):
                         return file_path
                 else:
                     raise argparse.ArgumentTypeError(
-                        "The file doesn't contains anything")
+                        "The file doesn't contain anything")
                     return file_path
         except FileNotFoundError:
             raise argparse.ArgumentTypeError(
-                "The given txt file doesn't exists")
+                "The given txt file doesn't exist")
     else:
         raise argparse.ArgumentTypeError("The file given isn't a txt file")
     return file_path
@@ -52,10 +52,10 @@ logging.basicConfig(
 
 mode = """
 Run the following command:
-pyhthon report.py -file 'txt file generate from the nmap scanning'
+python report.py -file 'txt file generated from the nmap scanning'
 """
 parser = argparse.ArgumentParser(
-    description="This script read a txt file and make a web report",
+    description="This script reads a txt file and makes a web report",
     epilog=mode,
     formatter_class=argparse.RawDescriptionHelpFormatter,
 )
@@ -77,9 +77,8 @@ api_key = (
 arguments = parser.parse_args()
 filename = arguments.file
 logging.info(f"Using api key to log in {api_key}.")
-# Check if the report find open port for the ip scanned
+# Check if the report finds an open port for the IP scanned
 with open(filename, "r") as report_file:
-    # Extract info from the nmap scan report file
     for line_num, line in enumerate(report_file, 1):
         if re.search(r"(\d+)/tcp\s+open", line):
             open_ports = True
@@ -89,6 +88,7 @@ if open_ports:
     ports = []
     with open(filename, "r") as report_file:
         for nline, line in enumerate(report_file, 1):
+            # Extract info from the nmap scan report file
             if "Nmap scan report for" in line:
                 ip_address = line.split()[-1].strip("()")
                 logging.info(f"Found an IP in file! >> {ip_address}")
@@ -100,16 +100,15 @@ if open_ports:
                 logging.error("Not enough information. Exit...")
     try:
         for port in ports:
-            name = f"Report_{ip_address}_Port{port}.txt"
-            logging.info("Report name >> %s" % name)
+            name = f"Report_Port.txt"
             try:
                 url = "https://api.abuseipdb.com/api/v2/report"
                 parameters = {
                     "ip": ip_address,
                     "categories": 14,
                     "comment": f"""
-                    the ip has been scanned and find the port {port} are open,
-                    it's very likely that some vulnerabilities have been found.
+                    The IP has been scanned and found the port {port} is open,
+                    some vulnerabilities have likely been found.
                     """,
                 }
                 headers = {"Accept": "application/json", "Key": api_key}
