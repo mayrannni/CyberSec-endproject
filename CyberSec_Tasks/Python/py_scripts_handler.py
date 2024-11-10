@@ -143,8 +143,8 @@ def main_menu():
 
     else:
         print("Invalid option. Please try again.")
-        main_menu()
+        py_scripts_handler()
 
 
 if __name__ == "__main__":
-    main_menu()
+    py_scripts_handler()
