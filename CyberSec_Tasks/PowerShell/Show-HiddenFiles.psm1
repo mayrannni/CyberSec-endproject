@@ -84,4 +84,4 @@ function Show-HiddenFiles {
 }
 
 #call the function
-sShow-HiddenFiles
+Export-ModuleMember -Function Show-HiddenFiles
