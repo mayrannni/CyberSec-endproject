@@ -174,13 +174,13 @@ elif os == "linux":
         print("Redirecting to main menu...\n")
     elif param.menu_option == "2":
         if param.submenu_option == "1":
-            help_command = ["Bash", secondary_path, "-h"]
-            input_help_validator(help_command)
-            print("\n----------------------------------------- \n")
             filename = r"/Bash/scanning.sh"
             main_path = path()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
+                help_command = ["Bash", secondary_path, "-h"]
+                input_help_validator(help_command)
+                print("\n----------------------------------------- \n")
                 subprocess.run(
                     ["Bash", secondary_path],
                     capture_output=True,
@@ -191,13 +191,13 @@ elif os == "linux":
                 name = r"/Bash/bash-reports/scanning.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
-            help_command = ["Bash", secondary_path, "-h"]
-            input_help_validator(help_command)
-            print("\n----------------------------------------- \n")
             filename = r"/Bash/ssh_honeypot.sh"
             main_path = path()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
+                help_command = ["Bash", secondary_path, "-h"]
+                input_help_validator(help_command)
+                print("\n----------------------------------------- \n")
                 subprocess.run(
                     ["Bash", secondary_path],
                     capture_output=True,
