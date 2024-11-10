@@ -47,7 +47,7 @@ def validate_port(ports):
                     )
 
 
-def vulnerability_scanning(param):
+def vulnerability_scanning(param, path):
     """Return the target's vulnerabilities."""
     try:
         command = ['nmap', '-p', param.ports, '--open', '-Pn',
@@ -125,6 +125,6 @@ except (subprocess.CalledProcessError, FileNotFoundError):
 
 if nmap_exist == 'True':
     logging.info('Nmap is installed')
-    vulnerability_scanning(param)
+    vulnerability_scanning(param, path)
 
 py_menu()
