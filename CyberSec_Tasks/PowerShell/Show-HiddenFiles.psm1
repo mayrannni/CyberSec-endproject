@@ -1,4 +1,4 @@
-#======================================
+﻿#======================================
 #function that displays hidden files :D
 #======================================
 
@@ -28,7 +28,7 @@ function Show-HiddenFiles {
 
     .notes
     Version 1.0
-    Authors: Estrella DÃ­az, Fernanda Romo
+    Authors: Estrella D., Fernanda R.
     Created 07/09/2024
 
     #>
@@ -69,11 +69,11 @@ function Show-HiddenFiles {
             Write-Host -ForegroundColor Red "There are no hidden files in $FolderPath."
         } else {
             #obtains the info from hidden files
-            "Information about hidden files" | Out-File "$PSScriptRoot\Results-HiddenFiles.txt"
+            "Information about hidden files" | Out-File "$PSScriptRoot\ps-reports\Results-HiddenFiles.txt"
             $HiddenFiles | Select-Object -Property @{Name = "HiddenFile"; Expression = {$_.Name}}, 
             LastAccessTime, LastWriteTime, @{Name = "Length (Bytes)"; Expression = {$_.Length}}, 
-            Mode, IsReadOnly | Format-Table -AutoSize >> "$PSScriptRoot\Results-HiddenFiles.txt"
-            Log-Message -Message "The file is located at $PSScriptRoot\Results-HiddenFiles.txt"
+            Mode, IsReadOnly | Format-Table -AutoSize >> "$PSScriptRoot\ps-reports\Results-HiddenFiles.txt"
+            Log-Message -Message "The file is located at $PSScriptRoot\ps-reports\Results-HiddenFiles.txt"
         }
 
     } catch {
@@ -83,4 +83,5 @@ function Show-HiddenFiles {
     }
 }
 
-Export-ModuleMember -Function Show-HiddenFiles
+#call the function
+sShow-HiddenFiles
