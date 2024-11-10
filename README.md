@@ -28,10 +28,13 @@ Made with -------------------------------- 🚀✨
 / CyberSec-endproject  
 |  
 | --- **main_menu.py** (main menu script in Python)  
-| --- **cybersec_tasks**/  
-| --- | --- **powershell**/ (PowerShell scripts, 4 tasks)  
-| --- | --- **bash**/ (BASH scripts, 2 tasks)  
-| --- | --- **python**/ (Python scripts, 5 tasks)  
+| --- **CyberSec_Tasks**/  
+| --- | --- **PowerShell**/ (PowerShell scripts, 4 tasks)  
+| --- | --- | --- **ps-reports**/  
+| --- | --- **BASH**/ (BASH scripts, 2 tasks)  
+| --- | --- | --- **bash-reports**/  
+| --- | --- **Python**/ (Python scripts, 5 tasks)    
+| --- | --- | --- **py-reports**/  
 | --- **README.md** (markdown documentation file)  
 
 ### 3. Installation
@@ -72,21 +75,30 @@ The main menu allows you to select and run any of the cybersecurity scripts. Eac
   - **Reporting IP addresses**  
     *report_ip.py* uses IP Abuse Database API to report the compromised IP that nmap (based on *ip_scanning.py*) returns with vulnerabilities.
 
-### 6. Examples
-examples (tbd)
+### 6. System requirements
+This project is compatible with the following operating systems, also you will see warnings when using the menu if you try to run a script in a programming language that is unlikely to be present in your operating system.
+- **Windows**   
+  PowerShell: Make sure you have PowerShell 5.1 or later. PowerShell Core (7.x) is also supported.
+  BASH (optional): If you use BASH scripts, you will need WSL (Windows Subsystem for Linux) or Git Bash.  
+  Python: Python 3.x must be installed. Python can be downloaded from [python.org](https://www.python.org/downloads/).  
+- **MacOS**  
+  PowerShell (optional): You can install PowerShell Core on MacOS, follow the instructions [here](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.4).  
+  Bash: MacOS comes with Bash by default. If you want to use modern Bash features, make sure your version is 4.x or later (upgradeable with Homebrew).  
+  Python: Python 3.x is required. Install Python via Homebrew using brew install python.  
+- **Linux**  
+  PowerShell (optional): PowerShell Core is compatible with Linux and can be installed by following the instructions [here](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-linux?view=powershell-7.4).  
+  Bash: All Linux systems have Bash by default.  
+  Python: Make sure you have Python 3.x installed. On most distributions you can install it using the package manager (sudo apt install python3 on Ubuntu/Debian or sudo yum install python3 on           CentOS/Fedora).  
 
-### 7. System requirements
-requirements (tbd)
-
-### 8. Credits
+### 7. Credits
 [mayrannni](https://github.com/mayrannni) - Creator  
 [Fermaroom](https://github.com/Fermaroom) - Creator  
 [Edgar-A23](https://github.com/Edgar-A23) - Creator
 
-### 9. Contributing
+### 8. Contributing
 Feel free to submit issues or pull requests if you'd like to contribute to this project. Please be respectful and follow standard GitHub collaboration practices.
 
-### 10. Notes
+### 9. Notes
 - **Security Considerations**: Do not use this tool on a network without permission. Ensure you have authorization to test any servers or services involved.
 - **Legal Notice**: This tool is intended for educational purposes only. The authors (students) are not liable for any misuse.
 - **Known Issues**: Occasionally, scripts may be delayed due to the execution of different processes such as scanning or searching for information in the system.
