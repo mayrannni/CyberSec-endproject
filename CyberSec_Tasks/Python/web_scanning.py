@@ -11,7 +11,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 import pyautogui
 from zapv2 import ZAPv2
-from menu import main_menu
+from py_scripts_handler import py_menu
 
 mainproxy = "http://localhost:8080"  # zap proxy
 
@@ -139,7 +139,7 @@ else:
     webbrowser.open(
         "https://www.zaproxy.org/download/"
     )  # open this page to install zap
-    main_menu()  # end script because zap was not installed
+    py_menu()  # end script because zap was not installed
 
 # call function to CONFIRM that zap is running and save zap process
 java_process, found_zap_process, zap_is_running, process = process_iter(
@@ -220,4 +220,4 @@ else:
         """ZAP could never be started.
     This script will not work if ZAP is not running on your computer."""
     )
-main_menu()
+py_menu()
