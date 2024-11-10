@@ -5,7 +5,7 @@ import time
 import os
 
 
-def main():
+def main_menu():
     """Show menu options"""
     print(
         "CyberSecurity scripts were developed in the following programming languages,",
@@ -17,7 +17,7 @@ def main():
     print("Enter 0 to exit.")
 
 
-def powershell():
+def submenu_powershell():
     """Show PowerShell scripts options"""
     print(
         "Displaying options...",
@@ -31,7 +31,7 @@ def powershell():
     print("Enter 0 and return to main menu.")
 
 
-def bash():
+def submenu_bash():
     """Show BASH scripts options"""
     print(
         "Displaying options...",
@@ -54,40 +54,40 @@ def path():
 def main():
     """Use main and secondary options"""
     finalpath = path()
-    opP = None
-    while opP != "0":
-        main()
-        opP = input("Desired option: ")
-        if opP == """1""":
+    menu_option = None
+    while menu_option != "0":
+        main_menu()
+        menu_option = input("Desired option: ")
+        if menu_option == """1""":
             while True:
-                powershell()
-                opS = input(">> Enter your choice ")
-                if opS == "1":
-                    subprocess.run(["python", finalpath, "-opP", opP, "-opS", opS])
-                elif opS == "2":
-                    subprocess.run(["python", finalpath, "-opP", opP, "-opS", opS])
-                elif opS == "3":
-                    subprocess.run(["python", finalpath, "-opP", opP, "-opS", opS])
-                elif opS == "4":
-                    subprocess.run(["python", finalpath, "-opP", opP, "-opS", opS])
-                elif opS == "0":
+                submenu_powershell()
+                submenu_option = input(">> Enter your choice ")
+                if submenu_option == "1":
+                    subprocess.run(["python", finalpath, "-menu_option", menu_option, "-submenu_option", submenu_option])
+                elif submenu_option == "2":
+                    subprocess.run(["python", finalpath, "-menu_option", menu_option, "-submenu_option", submenu_option])
+                elif submenu_option == "3":
+                    subprocess.run(["python", finalpath, "-menu_option", menu_option, "-submenu_option", submenu_option])
+                elif submenu_option == "4":
+                    subprocess.run(["python", finalpath, "-menu_option", menu_option, "-submenu_option", submenu_option])
+                elif submenu_option == "0":
                     time.sleep(2)
                     break
                 else:
                     print("Option is not within the established parameters.")
-        elif opP == "2":
-            bash()
-            opS = input(">> Enter your choice ")
-            if opS == "1":
-                subprocess.run(["python", finalpath, "-opP", opP, "-opS", opS])
-            elif opS == "2":
-                subprocess.run(["python", finalpath, "-opP", opP, "-opS", opS])
-            elif opS == "0":
+        elif menu_option == "2":
+            submenu_bash()
+            submenu_option = input(">> Enter your choice ")
+            if submenu_option == "1":
+                subprocess.run(["python", finalpath, "-menu_option", menu_option, "-submenu_option", submenu_option])
+            elif submenu_option == "2":
+                subprocess.run(["python", finalpath, "-menu_option", menu_option, "-submenu_option", submenu_option])
+            elif submenu_option == "0":
                 time.sleep(2)
                 break
-        elif opP == "3":
-            subprocess.run(["python", finalpath, "-opP", opP])
-        elif opP == "0":
+        elif menu_option == "3":
+            subprocess.run(["python", finalpath, "-menu_option", menu_option])
+        elif menu_option == "0":
             print("ByeBye!")
             exit
         else:
