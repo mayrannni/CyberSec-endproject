@@ -1,0 +1,102 @@
+#!/bin/bash
+
+port=22
+report="$PWD/bash-reports/SSH_attempts.log"
+
+show_help() {
+    echo "Usage: ssh_honeypot.sh [-h] [-c NUM]"
+    echo "This script shows a open ssh port and captures any suspicious connection"
+    echo ""
+    echo "Options:"
+    echo "-h, --help		shows this help"
+    echo "-c <connections>   	give this number to scan without saturate"
+    echo "NUM			number of connections to make"
+    echo "Script makes a results report and save it on your system"
+    echo "We hope the script handling with a menu will make your life easier :)"
+}
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -h | --help)
+            show_help
+            exit 0 ;;
+        -c)
+            connections="$2"
+            shift ;;
+         *)
+            echo "Unrecognized choice: $1"
+            show_help
+            exit 1 ;;
+    esac
+    shift
+done
+
+#create honeypot function
+create_honeypot() {
+    #need this number to avoid saturating the processes
+    if [[ -z "$connections"  ]]; then
+        read -p ">> how many times do you want to listen ssh connections? " connections
+    fi
+    i=0
+    echo "building up honeypot at 22 port..."
+    sleep 3s
+    #search os information for banner to attract access attempts
+    os_name=$(lsb_release -d | awk -F'\t' '{print $2}') #e.g. Kali GNU/Linux Rolling
+    kernel_ver=$(uname -r) #e.g. 6.6.9-amd64
+    ssh_ver=$(ssh -V 2>&1 | awk '{print $1}') #e.g. OpenSSH_9.6p1
+
+    banner="SSH-2.0-$ssh_ver $os_name $kernel_ver"
+
+    while [ $i -lt $connections ]; do
+        #fooling with my banner, try to listen 22 port using netcat
+        echo -e "$banner" |timeout 8s nc -lvp $port 2>/dev/null 
+        #filter netstat results that we are interested and extract the ip
+        info_connection=$(netstat -tnp 2>/dev/null | grep ":$port " | grep "ESTAB")
+        ip=$(echo $info_connection | awk '{print $5}' | cut -d: -f1)
+        r_port=$(echo $info_connection | awk '{print $5}' | cut -d: -f2)
+        sleep 3s
+        if [ -n "$info_connection" ]; then
+            echo "listening and saving results in $report..."
+            sleep 1.5s
+            #if $info_connection length > 0 then save the following msg in a log file (report)
+            echo "ssh access attempt from ip: $ip and remote port: $r_port === $(date)" >> $report
+        else
+            echo "ssh access attempt from unknown ip (no more details) === $(date)" >> $report
+        fi
+        ((i++))
+    done
+}
+
+show_report() {
+    if [ -f "$report" ]; then
+        echo "showing $report"
+        cat $report
+    else
+        echo "report not found :("
+    fi
+}
+
+exit_script() {
+    echo "stopping and cleaning ssh honeypot..."
+    sleep 1.5s
+    #kill process strictly called "nc -lvp" (our honeypot basically)
+    pkill -f "nc -lvp"
+    echo "ssh honeypot has stopped, goodbye!"
+    exit 0
+}
+#menu
+while true; do
+    echo "=== welcome to ssh honeypot ==="
+    echo "1) start"
+    echo "2) view results"
+    echo "3) clean honeypot"
+    echo "=== === === === === === === ==="
+    read -p ">> your choice: " choice
+
+    case $choice in
+        1) create_honeypot ;;
+        2) show_report ;;
+        3) exit_script ;;
+        *) echo "your choice must be between 1 and 3, please try again" ;;
+    esac
+done
