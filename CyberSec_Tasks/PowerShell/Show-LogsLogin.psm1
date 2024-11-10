@@ -80,4 +80,4 @@ function Show-LogsLogin {
 }
 
 #calling
-Show-LogsLogin
+Export-ModuleMember -Function Show-LogsLogin
