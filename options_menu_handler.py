@@ -127,7 +127,7 @@ if os == "win32":
                 print("File does not exist.")
                 time.sleep(2)
         elif param.submenu_option == "3":
-            filename = r"\PowerShell\Show-HiddenFiles.ps1"
+            filename = r"\PowerShell\Show-HiddenFiles.psm1"
             main_path = path()
             sec = main_path + filename
             if os.path.exists(sec):
