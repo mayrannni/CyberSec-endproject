@@ -1,3 +1,5 @@
+"""Manage CyberSec-endproject"""
+
 import subprocess
 import time
 import os
@@ -16,6 +18,7 @@ def main():
 
 
 def powershell():
+    """Show PowerShell scripts options"""
     print(
         "Displaying options...",
         "Note! Options are scripts made with PowerShell"
@@ -29,6 +32,7 @@ def powershell():
 
 
 def bash():
+    """Show BASH scripts options"""
     print(
         "Displaying options...",
         "Note! Options are scripts made with BASH"
@@ -48,6 +52,7 @@ def path():
 
 
 def main():
+    """Use main and secondary options"""
     finalpath = path()
     opP = None
     while opP != "0":
