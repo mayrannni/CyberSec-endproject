@@ -181,8 +181,10 @@ if zap_is_running:
     html_report = zap_request.core.htmlreport()  # Get html report from ZAP api
     epoch_date = int(datetime.now().timestamp())
     report_name = f"WebPentest{epoch_date}.html"
+    path = "\\py-reports\\"
+    path =+ report_name
 
-    with open(report_name, "w", encoding="utf-8") as report:
+    with open(path, "w", encoding="utf-8") as report:
         report.write(html_report)  # save html content
 
     # to personalize report html title with just url domain
