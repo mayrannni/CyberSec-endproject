@@ -1,13 +1,16 @@
-"""Do the scripts management"""
+"""Do the scripts management for the py_scripts_handler."""
 
-import sys
+import hashlib
+import datetime
+import os
 import subprocess
+import sys
 import time
 import re
-
+from main_menu import main
 
 def input_help_validator(help_command):
-    """Validate help command"""
+    """Validate help command."""
     attempts = 0
     max_attempts = 3
     while attempts < max_attempts:
@@ -40,15 +43,43 @@ def input_help_validator(help_command):
         time.sleep(3)
 
 
+def scripts_execution_info(root_path, filename):
+    """Show hash and datetime."""
+    # execution date
+    get_date = datetime.datetime.now()
+    date = get_date.strftime("%d-%m-%Y %H:%M:%S.%f")
+    print("Script successfully completed its task at: %s" % date)
+    # file hash
+    path_file = root_path + filename
+    try:
+        file_ob = open(path_file, "rb")
+    except Exception:
+        print("File Not Found.")
+    else:
+        # hash value from file
+        file_to_hash = file_ob.read()
+        hash_info = hashlib.sha512(file_to_hash)
+        hash_value = hash_info.hexdigest()
+        print(
+            "File HASH is: %s \n" % hash_value,
+            "Generated report PATH by the script is: %s" % path,
+        )
+
+
+def path():
+    """Find the path where the script is located."""
+    main_path = os.path.dirname(os.path.abspath(__file__))
+    return main_path
+
 def py_menu():
-    """Show menu for manage scripts"""
-    print("Cybersecutiry Tasks in Python")
+    """Show menu for managing scripts."""
+    print("Cybersecurity Tasks in Python")
     print("1. Scan vulnerabilities for websites")
     print("2. Check open ports - SHODAN")
     print("3. Use IP Abuse Database")
-    print("4. Scanning IP addreses - NMAP")
+    print("4. Scanning IP addresses - NMAP")
     print("5. Reporting IP addresses")
-    print("6. Exit")
+    print("6. Return to the main menu")
 
     choice = input("Select a cybersecurity function to start >> ")
 
@@ -80,8 +111,21 @@ def py_menu():
                 time.sleep(1)
 
         subprocess.run(
-            ["python", "web_scanning.py", "-url", target_url, "-zapikey", zapikey]
+            ["python", "web_scanning.py", "-url", target_url, "-zapikey",
+             zapikey]
         )  # run web scanning
+        # Show the file-generated info
+        main_path = path()
+        path_html_file = r"\py-reports\WebPentest.*html"
+        pattern = re.compile(path_html_file)
+        for root, dirs, files in os.walk(main_path):
+            for file_name in files:
+                if pattern.match(file_name):
+                    name_file = f"\\{file}"
+        print(f"The file name created is {name_file.replace('\\',"")}")
+        name = "\\py-reports"
+        name =+ name_file
+        scripts_execution_info(main_path, name)
 
     elif choice == "2":
         help_command = ["python", "open_ports.py", "--help"]
@@ -91,6 +135,11 @@ def py_menu():
 
         ip = input("Enter the IP to scan (e.g. '8.8.8.8'): ")
         subprocess.run(["python", "open_ports.py", "-ip", ip])
+        # Show the file-generated info
+        main_path = path()
+        print("The file name created is Full_API_Response.txt")
+        name = "\\Python\\py-reports\\Full_API_Response.txt"
+        scripts_execution_info(main_path, name)
 
     elif choice == "3":
         help_command = ["python", "ip_inspector.py", "--help"]
@@ -116,6 +165,20 @@ def py_menu():
                 ip_range,
             ]
         )
+        # Show the file-generated info
+        main_path = path()
+        print("The files name created is: \n"
+              ">> check_ip_.txt",
+              ">> black_list_.txt",
+              ">> check_block_.txt")
+        name1 = "\\Python\\py-reports\\check_ip_.txt"
+        scripts_execution_info(main_path, name1)
+        print("-"*40)
+        name2 = "\\Python\\py-reports\\black_list_.txt"
+        scripts_execution_info(main_path, name2)
+        print("-"*40)
+        name3 = "\\Python\\py-reports\\check_block_.txt"
+        scripts_execution_info(main_path, name3)
 
     elif choice == "4":
         help_command = ["python", "ip_scanning.py", "--help"]
@@ -128,6 +191,11 @@ def py_menu():
         subprocess.run(
             ["python", "ip_scanning.py", "-ip", ip_nmap, "-ports", ports_range]
         )
+        # Show the file-generated info
+        main_path = path()
+        print("The file name created is VulnerabilityScanning_.txt")
+        name = "\\Python\\py-reports\\VulnerabilityScanning_.txt"
+        scripts_execution_info(main_path, name)
 
     elif choice == "5":
         help_command = ["python", "report_ip.py", "--help"]
@@ -137,14 +205,19 @@ def py_menu():
 
         file_path = input("Enter the file NMAP scan path: ")
         subprocess.run(["python", "report_ip.py", "-file", file_path])
+        # Show the file-generated info
+        main_path = path()
+        print("The file name created is report_ip.txt")
+        name = "\\Python\\py-reports\\report_ip.txt"
+        scripts_execution_info(main_path, name)
 
     elif choice == "6":
-        sys.exit()
+        main()
 
     else:
         print("Invalid option. Please try again.")
-        py_scripts_handler()
+        main_menu()
 
 
 if __name__ == "__main__":
-    py_scripts_handler()
+    main_menu()
