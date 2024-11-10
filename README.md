@@ -4,7 +4,6 @@
   2. Project structure
   3. Installation
   4. Usage
-     - Menu options
   5. More about Scripts
      - PowerShell
      - GNU BASH
@@ -28,12 +27,14 @@ Made with -------------------------------- 🚀✨
 / CyberSec-endproject  
 |  
 | --- **main_menu.py** (main menu script in Python)  
+| --- **options_menu_handler.py** (main menu handler)  
 | --- **CyberSec_Tasks**/  
-| --- | --- **PowerShell**/ (PowerShell scripts, 4 tasks)  
+| --- | --- **PowerShell**/ (PowerShell scripts .psm1, 4 tasks)  
 | --- | --- | --- **ps-reports**/  
-| --- | --- **BASH**/ (BASH scripts, 2 tasks)  
+| --- | --- **BASH**/ (BASH scripts .sh, 2 tasks)  
 | --- | --- | --- **bash-reports**/  
-| --- | --- **Python**/ (Python scripts, 5 tasks)    
+| --- | --- **Python**/ (Python scripts .py, 5 tasks)  
+| --- | --- | --- **py_scripts_handler**/  
 | --- | --- | --- **py-reports**/  
 | --- **README.md** (markdown documentation file)  
 
@@ -47,6 +48,7 @@ Made with -------------------------------- 🚀✨
 To launch the main menu with Python  
 -> python main_menu.py  
 The main menu allows you to select and run any of the cybersecurity scripts. Each script corresponds to specific security tasks such as scanning, security API's query or analyzing system information.
+The menu consists of two scripts to take advantage of argparse. Just run main_menu.py and it will automatically play with the functionality of options_menu_handler.py.
 
 ### 5. More about scripts
 #### PowerShell
