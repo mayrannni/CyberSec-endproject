@@ -174,7 +174,7 @@ elif operating_system == "linux":
         print("Redirecting to main menu...\n")
     elif param.menu_option == "2":
         if param.submenu_option == "1":
-            filename = r"/Bash/scanning.sh"
+            filename = r"/BASH/scanning.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
@@ -188,12 +188,12 @@ elif operating_system == "linux":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/Bash/bash-reports/port_scan.txt"
+                name = r"/BASH/bash-reports/port_scan.txt"
                 scripts_execution_info(main_path, name)
-                name = r"/Bash/bash-reports/vulnerabilities_scan.txt"
+                name = r"/BASH/bash-reports/vulnerabilities_scan.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
-            filename = r"/Bash/ssh_honeypot.sh"
+            filename = r"/BASH/ssh_honeypot.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
@@ -207,7 +207,7 @@ elif operating_system == "linux":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/Bash/bash-reports/ssh_honeypot.txt"
+                name = r"/BASH/bash-reports/ssh_honeypot.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "0":
             print("Back to main menu, bye!")
@@ -228,7 +228,7 @@ elif operating_system == "darwin":
         print("Redirecting to main menu...\n")
     elif param.menu_option == "2":
         if param.submenu_option == "1":
-            filename = r"/Bash/scanning.sh"
+            filename = r"/BASH/scanning.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
@@ -242,12 +242,12 @@ elif operating_system == "darwin":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/Bash/bash-reports/port_scan.txt"
+                name = r"/BASH/bash-reports/port_scan.txt"
                 scripts_execution_info(main_path, name)
-                name = r"/Bash/bash-reports/vulnerabilities_scan.txt"
+                name = r"/BASH/bash-reports/vulnerabilities_scan.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
-            filename = r"/Bash/ssh_honeypot.sh"
+            filename = r"/BASH/ssh_honeypot.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
@@ -261,7 +261,7 @@ elif operating_system == "darwin":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/Bash/bash-reports/ssh_honeypot.txt"
+                name = r"/BASH/bash-reports/ssh_honeypot.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "0":
             print("Back to main menu, bye!")
