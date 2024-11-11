@@ -155,10 +155,10 @@ if operating_system == "win32":
                 print("File does not exist.")
                 time.sleep(2)
         else:
-            print("OPCiob no valida")
+            print("Option is not within the established parameters.")
     elif param.menu_option == "2":
         print("You cannot run this option as your operating system is Windows.")
-        print("Redirigiendo al menu  pricipal... \n")
+        print("Redirecting to main menu... \n")
         time.sleep(2)
     elif param.menu_option == "3":
         filename = "\\Python\\py_scripts_handler.py"
