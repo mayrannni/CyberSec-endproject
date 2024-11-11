@@ -105,7 +105,7 @@ if operating_system == "win32":
                 print("")
                 print("\n----------------------------------------- \n")
                 subprocess.run(
-                    ["Powershell", "-ExecutionPolicy", "Bypass", secondary_path]
+                    ["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path]
                 )  # Comentario de que hace
                 name = "\\PowerShell\\ps-reports\\Get-PCInformation.html"
                 scripts_execution_info(main_path, name)
@@ -120,7 +120,7 @@ if operating_system == "win32":
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
-                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", secondary_path])
+                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path])
                 name = "\\PowerShell\\ps-reports\\Request-ApiHashBased.log"
                 scripts_execution_info(main_path, name)
             else:
@@ -134,7 +134,7 @@ if operating_system == "win32":
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
-                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", secondary_path])
+                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path])
                 name = "\\PowerShell\\ps-reports\\Show-HiddenFiles.txt"
                 scripts_execution_info(main_path, name)
             else:
@@ -148,7 +148,7 @@ if operating_system == "win32":
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
-                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", secondary_path])
+                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path])
                 name = "\\PowerShell\\ps-reports\\Show-LogsLogin.txt"
                 scripts_execution_info(main_path, name)
             else:
