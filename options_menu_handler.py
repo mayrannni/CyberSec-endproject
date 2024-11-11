@@ -247,12 +247,12 @@ elif os == "darwin":
                 name = r"/Bash/bash-reports/vulnerabilities_scan.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
-            help_command = ["Bash", secondary_path, "-h"]
-            input_help_validator(help_command)
-            print("\n----------------------------------------- \n")
             filename = r"/Bash/ssh_honeypot.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
+            help_command = ["Bash", secondary_path, "-h"]
+            input_help_validator(help_command)
+            print("\n----------------------------------------- \n")
             if os.path.exists(secondary_path):
                 subprocess.run(
                     ["Bash", secondary_path],
