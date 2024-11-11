@@ -96,7 +96,7 @@ os = sys.platform
 if os == "win32":
     if param.menu_option == "1":
         if param.submenu_option == "1":
-            filename = "\\PowerShell\\Get-PcInformation.psm1"
+            filename = "\\PowerShell\\Get-PCInformation.psm1"
             main_path = path_finder()
             secondary_path = main + filename
             if os.path.exists(secondary_path):
@@ -155,7 +155,7 @@ if os == "win32":
                 print("File does not exist.")
                 time.sleep(2)
         else:
-            print("Opciob no valida")
+            print("OPCiob no valida")
     elif param.menu_option == "2":
         print("You cannot run this option as your operating system is Windows.")
         print("Redirigiendo al menu  pricipal... \n")
