@@ -66,7 +66,7 @@ def scripts_execution_info(root_path, filename):
         )
 
 
-def path():
+def path_finder():
     """Find the path where the script is located."""
     main_path = os.path.dirname(os.path.abspath(__file__))
     return main_path
@@ -115,7 +115,7 @@ def py_menu():
              zapikey]
         )  # run web scanning
         # Show the file-generated info
-        main_path = path()
+        main_path = path_finder()
         path_html_file = r"\py-reports\WebPentest.*html"
         pattern = re.compile(path_html_file)
         for root, dirs, files in os.walk(main_path):
@@ -136,7 +136,7 @@ def py_menu():
         ip = input("Enter the IP to scan (e.g. '8.8.8.8'): ")
         subprocess.run(["python", "open_ports.py", "-ip", ip])
         # Show the file-generated info
-        main_path = path()
+        main_path = path_finder()
         print("The file name created is Full_API_Response.txt")
         name = "\\Python\\py-reports\\Full_API_Response.txt"
         scripts_execution_info(main_path, name)
@@ -166,7 +166,7 @@ def py_menu():
             ]
         )
         # Show the file-generated info
-        main_path = path()
+        main_path = path_finder()
         print("The files name created is: \n"
               ">> check_ip_.txt",
               ">> black_list_.txt",
@@ -192,7 +192,7 @@ def py_menu():
             ["python", "ip_scanning.py", "-ip", ip_nmap, "-ports", ports_range]
         )
         # Show the file-generated info
-        main_path = path()
+        main_path = path_finder()
         print("The file name created is VulnerabilityScanning_.txt")
         name = "\\Python\\py-reports\\VulnerabilityScanning_.txt"
         scripts_execution_info(main_path, name)
@@ -206,7 +206,7 @@ def py_menu():
         file_path = input("Enter the file NMAP scan path: ")
         subprocess.run(["python", "report_ip.py", "-file", file_path])
         # Show the file-generated info
-        main_path = path()
+        main_path = path_finder()
         print("The file name created is report_ip.txt")
         name = "\\Python\\py-reports\\report_ip.txt"
         scripts_execution_info(main_path, name)
