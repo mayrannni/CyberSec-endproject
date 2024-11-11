@@ -8,8 +8,10 @@ import os
 def main_menu():
     """Show menu options"""
     print(
-        "CyberSecurity scripts were developed in the following programming languages,",
-        "select one of them to be able to display a submenu of the tasks.",
+        "CyberSecurity scripts were developed in the following programming languages...",
+    )
+    print(
+        "Select one of them to be able to display a submenu of the tasks.",
     )
     print("1. PowerShell")
     print("2. BASH")
@@ -21,7 +23,7 @@ def submenu_powershell():
     """Show PowerShell scripts options"""
     print(
         "Displaying options...",
-        "Note! Options are scripts made with PowerShell"
+        "Note! Options are scripts made with PowerShell.",
         "Pick the one you want to see in action! :D",
     )
     print("1. Get-PCInformation")
@@ -35,7 +37,7 @@ def submenu_bash():
     """Show BASH scripts options"""
     print(
         "Displaying options...",
-        "Note! Options are scripts made with BASH"
+        "Note! Options are scripts made with BASH.",
         "Pick the one you want to see in action! :D",
     )
     print("1. Scanning ports")
@@ -43,22 +45,22 @@ def submenu_bash():
     print("Enter 0 and return to main menu.")
 
 
-def path():
+def path_finder():
     """Find the path where the script is located"""
     main_path = os.path.dirname(os.path.abspath(__file__))
-    filename = "\options_menu_handler.py"
+    filename = r"\options_menu_handler.py"
     finalpath = main_path + filename
     return finalpath
 
 
 def main():
     """Use main and secondary options"""
-    finalpath = path()
+    finalpath = path_finder()
     menu_option = None
     while menu_option != "0":
         main_menu()
         menu_option = input("Desired option: ")
-        if menu_option == """1""":
+        if menu_option == "1":
             while True:
                 submenu_powershell()
                 submenu_option = input(">> Enter your choice ")
