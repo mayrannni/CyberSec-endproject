@@ -106,7 +106,7 @@ if operating_system == "win32":
                 print("\n----------------------------------------- \n")
                 subprocess.run(
                     ["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path]
-                )  # Comentario de que hace
+                )
                 name = "\\PowerShell\\ps-reports\\Get-PCInformation.html"
                 scripts_execution_info(main_path, name)
             else:
