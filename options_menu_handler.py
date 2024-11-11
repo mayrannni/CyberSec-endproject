@@ -228,12 +228,12 @@ elif os == "darwin":
         print("Redirecting to main menu...\n")
     elif param.menu_option == "2":
         if param.submenu_option == "1":
-            help_command = ["Bash", secondary_path, "-h"]
-            input_help_validator(help_command)
-            print("\n----------------------------------------- \n")
             filename = r"/Bash/scanning.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
+            help_command = ["Bash", secondary_path, "-h"]
+            input_help_validator(help_command)
+            print("\n----------------------------------------- \n")
             if os.path.exists(secondary_path):
                 subprocess.run(
                     ["Bash", secondary_path],
