@@ -98,7 +98,7 @@ if operating_system == "win32":
         if param.submenu_option == "1":
             filename = "\\PowerShell\\Get-PCInformation.psm1"
             main_path = path_finder()
-            secondary_path = main + filename
+            secondary_path = main_path + filename
             if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
