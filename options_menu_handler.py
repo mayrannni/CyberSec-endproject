@@ -10,7 +10,7 @@ import time
 from main_menu import main
 
 
-def path():
+def path_finder():
     """Find the path where the script is located."""
     main_path = os.path.dirname(os.path.abspath(__file__))
     return main_path
@@ -96,8 +96,8 @@ os = sys.platform
 if os == "win32":
     if param.menu_option == "1":
         if param.submenu_option == "1":
-            filename = r"\PowerShell\Get-PcInformation.psm1"
-            main_path = path()
+            filename = "\\PowerShell\\Get-PcInformation.psm1"
+            main_path = path_finder()
             secondary_path = main + filename
             if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
@@ -107,49 +107,49 @@ if os == "win32":
                 subprocess.run(
                     ["Powershell", "-ExecutionPolicy", "Bypass", secondary_path]
                 )  # Comentario de que hace
-                name = r"\PowerShell\ps-reports\Get-PCInformation.html"
+                name = "\\PowerShell\\ps-reports\\Get-PCInformation.html"
                 scripts_execution_info(main_path, name)
             else:
                 print("File does not exist.")
                 time.sleep(2)
         elif param.submenu_option == "2":
-            filename = r"\PowerShell\Request-ApiHashBased.psm1"
-            main_path = path()
+            filename = "\\PowerShell\\Request-ApiHashBased.psm1"
+            main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
                 subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", secondary_path])
-                name = r"\PowerShell\ps-reports\Request-ApiHashBased.log"
+                name = "\\PowerShell\\ps-reports\\Request-ApiHashBased.log"
                 scripts_execution_info(main_path, name)
             else:
                 print("File does not exist.")
                 time.sleep(2)
         elif param.submenu_option == "3":
-            filename = r"\PowerShell\Show-HiddenFiles.psm1"
-            main_path = path()
+            filename = "\\PowerShell\\Show-HiddenFiles.psm1"
+            main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
                 subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", secondary_path])
-                name = r"\PowerShell\ps-reports\Show-HiddenFiles.txt"
+                name = "\\PowerShell\\ps-reports\\Show-HiddenFiles.txt"
                 scripts_execution_info(main_path, name)
             else:
                 print("File does not exist.")
                 time.sleep(2)
         elif param.submenu_option == "4":
-            filename = r"\PowerShell\Show-LogsLogin.psm1"
-            main_path = path()
+            filename = "\\PowerShell\\Show-LogsLogin.psm1"
+            main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
                 help_command = ["PowerShell", secondary_path, "--help"]
                 input_help_validator(help_command)
                 print("\n----------------------------------------- \n")
                 subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", secondary_path])
-                name = r"\PowerShell\ps-reports\Show-LogsLogin.txt"
+                name = "\\PowerShell\\ps-reports\\Show-LogsLogin.txt"
                 scripts_execution_info(main_path, name)
             else:
                 print("File does not exist.")
@@ -161,8 +161,8 @@ if os == "win32":
         print("Redirigiendo al menu  pricipal... \n")
         time.sleep(2)
     elif param.menu_option == "3":
-        filename = r"/Python/main_menu.py"
-        main_path = path()
+        filename = "\\Python\\main_menu.py"
+        main_path = path_finder()
         secondary_path = main_path + filename
         if os.path.exists(secondary_path):
             subprocess.run("python", secondary_path, capture_output=True, text=True)
@@ -175,7 +175,7 @@ elif os == "linux":
     elif param.menu_option == "2":
         if param.submenu_option == "1":
             filename = r"/Bash/scanning.sh"
-            main_path = path()
+            main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
                 help_command = ["Bash", secondary_path, "-h"]
@@ -194,7 +194,7 @@ elif os == "linux":
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
             filename = r"/Bash/ssh_honeypot.sh"
-            main_path = path()
+            main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
                 help_command = ["Bash", secondary_path, "-h"]
@@ -216,7 +216,7 @@ elif os == "linux":
             print("Option is not within the established parameters.")
     elif param.menu_option == "3":
         filename = r"/Python/main_menu.py"
-        main_path = path()
+        main_path = path_finder()
         secondary_path = main_path + filename
         if os.path.exists(secondary_path):
             subprocess.run("python", secondary_path, capture_output=True, text=True)
@@ -232,7 +232,7 @@ elif os == "darwin":
             input_help_validator(help_command)
             print("\n----------------------------------------- \n")
             filename = r"/Bash/scanning.sh"
-            main_path = path()
+            main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
                 subprocess.run(
@@ -251,7 +251,7 @@ elif os == "darwin":
             input_help_validator(help_command)
             print("\n----------------------------------------- \n")
             filename = r"/Bash/ssh_honeypot.sh"
-            main_path = path()
+            main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
                 subprocess.run(
@@ -270,7 +270,7 @@ elif os == "darwin":
             print("Option is not within the established parameters.")
     elif param.menu_option == "3":
         filename = r"/Python/main_menu.py"
-        main_path = path()
+        main_path = path_finder()
         secondary_path = main_path + filename
         if os.path.exists(secondary_path):
             subprocess.run("python", secondary_path, capture_output=True, text=True)
