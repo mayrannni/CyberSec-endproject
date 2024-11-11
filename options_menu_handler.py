@@ -161,7 +161,7 @@ if operating_system == "win32":
         print("Redirigiendo al menu  pricipal... \n")
         time.sleep(2)
     elif param.menu_option == "3":
-        filename = "\\Python\\main_menu.py"
+        filename = "\\Python\\py_scripts_handler.py"
         main_path = path_finder()
         secondary_path = main_path + filename
         if os.path.exists(secondary_path):
@@ -215,7 +215,7 @@ elif operating_system == "linux":
         else:
             print("Option is not within the established parameters.")
     elif param.menu_option == "3":
-        filename = r"/Python/main_menu.py"
+        filename = r"/Python/py_scripts_handler.py"
         main_path = path_finder()
         secondary_path = main_path + filename
         if os.path.exists(secondary_path):
@@ -269,7 +269,7 @@ elif operating_system == "darwin":
         else:
             print("Option is not within the established parameters.")
     elif param.menu_option == "3":
-        filename = r"/Python/main_menu.py"
+        filename = r"/Python/py_scripts_handler.py"
         main_path = path_finder()
         secondary_path = main_path + filename
         if os.path.exists(secondary_path):
