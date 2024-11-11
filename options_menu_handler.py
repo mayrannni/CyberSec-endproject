@@ -231,10 +231,10 @@ elif os == "darwin":
             filename = r"/Bash/scanning.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
-            help_command = ["Bash", secondary_path, "-h"]
-            input_help_validator(help_command)
-            print("\n----------------------------------------- \n")
             if os.path.exists(secondary_path):
+                help_command = ["Bash", secondary_path, "-h"]
+                input_help_validator(help_command)
+                print("\n----------------------------------------- \n")
                 subprocess.run(
                     ["Bash", secondary_path],
                     capture_output=True,
@@ -250,10 +250,10 @@ elif os == "darwin":
             filename = r"/Bash/ssh_honeypot.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
-            help_command = ["Bash", secondary_path, "-h"]
-            input_help_validator(help_command)
-            print("\n----------------------------------------- \n")
             if os.path.exists(secondary_path):
+                help_command = ["Bash", secondary_path, "-h"]
+                input_help_validator(help_command)
+                print("\n----------------------------------------- \n")
                 subprocess.run(
                     ["Bash", secondary_path],
                     capture_output=True,
