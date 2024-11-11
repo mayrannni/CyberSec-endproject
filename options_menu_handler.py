@@ -92,8 +92,8 @@ parser.add_argument(
 )
 param = parser.parse_args()
 
-os = sys.platform
-if os == "win32":
+operating_system = sys.platform
+if operating_system == "win32":
     if param.menu_option == "1":
         if param.submenu_option == "1":
             filename = "\\PowerShell\\Get-PCInformation.psm1"
@@ -168,7 +168,7 @@ if os == "win32":
             subprocess.run("python", secondary_path, capture_output=True, text=True)
         else:
             print("File does not exist.")
-elif os == "linux":
+elif operating_system == "linux":
     if param.menu_option == "1":
         print("You cannot run this option,", "as your OS is Linux.")
         print("Redirecting to main menu...\n")
@@ -222,7 +222,7 @@ elif os == "linux":
             subprocess.run("python", secondary_path, capture_output=True, text=True)
         else:
             print("File does not exist.")
-elif os == "darwin":
+elif operating_system == "darwin":
     if param.menu_option == "1":
         print("You cannot run this option,", "as your OS is Linux.")
         print("Redirecting to main menu...\n")
