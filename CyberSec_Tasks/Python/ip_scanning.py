@@ -59,7 +59,7 @@ def vulnerability_scanning(param, path):
             ps_line = 'powershell -Executionpolicy Bypass -Command ' + \
                   ' '.join(command)
         elif operating_system == "linux":
-            ps_line = 'bash -Command ' + ' '.join(command)
+            ps_line = 'Bash -Command ' + ' '.join(command)
         elif operating_system == "darwin":
             ps_line = 'Bash -Command ' + ' '.join(command)
         else: 
