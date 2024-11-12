@@ -287,12 +287,14 @@ elif operating_system == "linux":
         else:
             print("Option is not within the established parameters.")
     elif param.menu_option == "3":
-        filename = r"/Python/py_scripts_handler.py"
         main_path = path_finder()
-        secondary_path = main_path + filename
-        print(secondary_path)
-        if os.path.exists(secondary_path):
-            subprocess.run("python", secondary_path, capture_output=True, text=True)
+        py_handler_file = os.path.join(
+            "CyberSec_Tasks", "Python", "py_scripts_handler.py"
+        )
+        abs_py_handler_file = os.path.join(main_path, py_handler_file)
+        abs_py_handler_file = os.path.abspath(abs_py_handler_file)
+        if os.path.exists(abs_py_handler_file):
+            subprocess.run("python", abs_py_handler_file, capture_output=True, text=True)
         else:
             print("File does not exist.")
 elif operating_system == "darwin":
@@ -342,11 +344,14 @@ elif operating_system == "darwin":
         else:
             print("Option is not within the established parameters.")
     elif param.menu_option == "3":
-        filename = r"/Python/main_menu.py"
         main_path = path_finder()
-        secondary_path = main_path + filename
-        if os.path.exists(secondary_path):
-            subprocess.run("python", secondary_path, capture_output=True, text=True)
+        py_handler_file = os.path.join(
+            "CyberSec_Tasks", "Python", "py_scripts_handler.py"
+        )
+        abs_py_handler_file = os.path.join(main_path, py_handler_file)
+        abs_py_handler_file = os.path.abspath(abs_py_handler_file)
+        if os.path.exists(abs_py_handler_file):
+            subprocess.run("python", abs_py_handler_file, capture_output=True, text=True)
         else:
             print("File does not exist.")
 else:
