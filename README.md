@@ -8,7 +8,7 @@
      - PowerShell
      - GNU BASH
      - Python
-  6. Examples
+  6. Reports
   7. System requirements
   8. Credits
   9. Contributing
@@ -39,7 +39,7 @@ Made with -------------------------------- 🚀✨
 | --- **README.md** (markdown documentation file)  
 
 ### 3. Installation
-1. Clone this repository  
+1. Clone this repository (you must have git installed)  
    -> git clone https://github.com/mayrannni/CyberSec-endproject.git  
    -> cd CyberSec-endproject  
 3. Preferably have PowerShell, BASH and Python installed. '''However, we consider problems depending on the different operating systems'''.
@@ -77,7 +77,13 @@ The menu consists of two scripts to take advantage of argparse. Just run main_me
   - **Reporting IP addresses**  
     *report_ip.py* uses IP Abuse Database API to report the compromised IP that nmap (based on *ip_scanning.py*) returns with vulnerabilities.
 
-### 6. System requirements
+### 6. Reports
+Most scripts have a log system to record the activity of each script at runtime, reporting general information, errors and warnings.
+Each script generates a report with the results of each cybersecurity task, usually in .html or .txt format.
+Each .html or .txt report is usually found in the exclusive report folders for each programming language used (e.g., for Python the folder is py-reports).
+Log files are only stored in the parent working directory in order to have a more accessible record of what is happening with our script executions.
+
+### 7. System requirements
 This project is compatible with the following operating systems, also you will see warnings when using the menu if you try to run a script in a programming language that is unlikely to be present in your operating system.
 - **Windows**   
   PowerShell: Make sure you have PowerShell 5.1 or later. PowerShell Core (7.x) is also supported.
@@ -92,15 +98,15 @@ This project is compatible with the following operating systems, also you will s
   Bash: All Linux systems have Bash by default.  
   Python: Make sure you have Python 3.x installed. On most distributions you can install it using the package manager (sudo apt install python3 on Ubuntu/Debian or sudo yum install python3 on           CentOS/Fedora).  
 
-### 7. Credits
+### 8. Credits
 [mayrannni](https://github.com/mayrannni) - Creator  
 [Fermaroom](https://github.com/Fermaroom) - Creator  
 [Edgar-A23](https://github.com/Edgar-A23) - Creator
 
-### 8. Contributing
+### 9. Contributing
 Feel free to submit issues or pull requests if you'd like to contribute to this project. Please be respectful and follow standard GitHub collaboration practices.
 
-### 9. Notes
+### 10. Notes
 - **Security Considerations**: Do not use this tool on a network without permission. Ensure you have authorization to test any servers or services involved.
 - **Legal Notice**: This tool is intended for educational purposes only. The authors (students) are not liable for any misuse.
 - **Known Issues**: Occasionally, scripts may be delayed due to the execution of different processes such as scanning or searching for information in the system.
