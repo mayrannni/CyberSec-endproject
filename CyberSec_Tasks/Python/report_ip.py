@@ -66,7 +66,7 @@ api_key = (
     "429c2b4681c79e8ed2505bde41513f604af76"
     "ec69a4a0d41bcd6146b6b67a6c09d3c6c1a218df66d"
 )
-
+# Nmap scan file
 arguments = parser.parse_args()
 filename = arguments.file
 logging.info(f"Using api key to log in {api_key}.")
@@ -75,9 +75,9 @@ name = os.path.join(main_path, "py-reports","report_ip.txt")
 
 if os.path.exists(filename):
     open_ports = False
-    # Check if the report finds an open port for the IP scanned
     with open(filename, "r") as report_file:
         for line_num, line in enumerate(report_file, 1):
+            # Check if the report finds an open port for the IP scanned
             if re.search(r"(\d+)/tcp\s+open", line):
                 open_ports = True
                 raise Exception("The given vulnerabilities scan ")
@@ -96,9 +96,11 @@ if os.path.exists(filename):
                         state = line.split()[1]
                     else:
                         logging.error("Not enough information.")
-                        with open(f"{name}", "w") as f:
+                        # Store information in the file report about the error
+                        with open(name, "w") as f:
                             f.write("Not enough information.")
             try:
+                # Report the open ports in the API Abuseip
                 for port in ports:
                     try:
                         url = "https://api.abuseipdb.com/api/v2/report"
@@ -114,28 +116,33 @@ if os.path.exists(filename):
                         response = requests.post(url, headers=headers, data=parameters)
                         information = response.json()
                         logging.info(information)
-                        with open(f"{name}", "w") as f:
+                        with open(name, "w") as f:
                             f.write(json.dumps(information, indent=4))
                         logging.info("Saved file.")
                     except requests.exceptions.RequestException as e:
                         logging.error(
                         f"An error occurred while making your request: {e}")
-                        with open(f"{name}", "w") as f:
+                        # Store information in the file report about the error
+                        with open(name, "w") as f:
                             f.write(f"An error occurred while making your request: {e}")
                     except Exception as e:
                         logging.error(f"Error: {e}")
-                        with open(f"{name}", "w") as f:
+                        # Store information in the file report about the error
+                        with open(name, "w") as f:
                             f.write(e)
             except Exception as error:
                 logging.error("Unexpected error: %s" % error)
-                with open(f"{name}", "w") as f:
+                # Store information in the file report about the error
+                with open(name, "w") as f:
                     f.write("An unespected error have been ocurred")
         else:
             logging.error("There is no valuable information in this report.")
             logging.error("Try again later...")
-            with open(f"{name}", "w") as f:
+            # Store information in the file report about the error
+            with open(name, "w") as f:
                 f.write("The file doesn't have any open port")
 else:
-    with open(f"{name}", "w") as f:
+    # Store information in the file report about the error
+    with open(name, "w") as f:
         f.write("The file doesn't exist")
     print("Check if the vulnerabilities scan have run before")
