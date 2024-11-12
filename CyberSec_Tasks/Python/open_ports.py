@@ -3,6 +3,7 @@
 
 import logging
 import argparse
+import os
 import re
 import json
 import shodan
@@ -53,14 +54,20 @@ ip = arguments.ip
 
 # The shodan api key to authenticate our search in the api
 api_key = "qYsYnBh8c6vx820iWeJc9VwzFMcIUU5l"
+# File to save the results
+main_path = os.path.dirname(os.path.abspath(__file__))
+file_name = os.path.join(main_path, "py-reports", "open_ports_report.txt")
 try:
     api = shodan.Shodan(api_key)
 except shodan.APIError as error:
     print(">> An error occurred with the API: \n%s" % error)
     logging.error(f"Error: {error}")
+    # Store information in the file report about the error
+    with open(file_name, "w") as file:
+        file.write("An error occurred with the API: \n%s" % error)
 else:
     # Save the response in a txt file to make reading easier
-    with open("API_IPResponse.txt", "w") as file:
+    with open(file_name, "w") as file:
         try:
             response = api.host(ip)
             file.write(f"<< Open ports in IP : {ip} >>\n")
@@ -71,28 +78,32 @@ else:
         except shodan.APIError as error:
             print(">> An error occurred with the API: \n%s" % error)
             logging.error(f"Error: {error}")
+            # Store information in the file report about the error
+            with open(file_name, "w") as file:
+                file.write("An error occurred with the API: \n%s" % error)
 
         except Exception as error:
             print(">> An error occurred: \n%s" % error)
             logging.error(f"Error: {error}")
-
+            # Store information in the file report about the error
+            with open(file_name, "w") as file:
+                file.write("An error occurred: \n%s" % error)
         else:
             response = api.host(ip)
-            full_response_file_name = "py-reports\\Full_API_Response.txt"
-            with open(full_response_file_name, "w") as file:
+            full_response = os.path.join(main_path, "py-reports", 
+                                         "open_ports_all_info.txt")
+            with open(full_response, "w") as file:
                 data = json.dumps(response, indent=4)
                 file.write(data)
             print(
-                'Data requested are saved in API_IPResponse.txt'
+                'Data requested are saved in open_ports_report.txt'
                 '\n And the full info requested are in %s'
-                % full_response_file_name
+                % full_response
             )
             print("Scan completed for the ip: %s" % ip)
             print(
-                "The full response and error.log files are created"
+                "The full response and info.log files are created"
                 " with the IP scan requested"
             )
         finally:
             print("Execution completed have a nice day :D")
-# Return to the menu
-py_menu()
