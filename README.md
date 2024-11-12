@@ -39,7 +39,7 @@ Made with -------------------------------- 🚀✨
 | --- **README.md** (markdown documentation file)  
 
 ### 3. Installation
-1. Clone this repository (you must have git installed)  
+1. In your terminal clone this repository (you must have git installed)  
    -> git clone https://github.com/mayrannni/CyberSec-endproject.git  
    -> cd CyberSec-endproject  
 3. Preferably have PowerShell, BASH and Python installed. '''However, we consider problems depending on the different operating systems'''.
