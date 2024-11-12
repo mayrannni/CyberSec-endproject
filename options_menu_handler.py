@@ -95,7 +95,7 @@ parser.add_argument(
 )
 param = parser.parse_args()
 
-operating_system = sys.platform
+operating_system = sys.platform #Check the operating system
 if operating_system == "win32":
     if param.menu_option == "1":
         if param.submenu_option == "1":
@@ -143,7 +143,7 @@ if operating_system == "win32":
             if os.path.exists(abs_module_path):
                 import_command = (
                     f"Import-Module '{abs_module_path}'; Request-ApiHashBased"
-                )
+                ) # import powershell module
                 help_command = [
                     "PowerShell",
                     "-Command",
@@ -171,7 +171,9 @@ if operating_system == "win32":
             abs_module_path = os.path.join(main_path, module_path)
             abs_module_path = os.path.abspath(abs_module_path)
             if os.path.exists(abs_module_path):
-                import_command = f"Import-Module '{abs_module_path}'; Show-HiddenFiles"
+                import_command = (
+                    f"Import-Module '{abs_module_path}'; Show-HiddenFiles"
+                    ) # import powershell module
                 help_command = [
                     "PowerShell",
                     "-Command",
@@ -199,7 +201,9 @@ if operating_system == "win32":
             abs_module_path = os.path.join(main_path, module_path)
             abs_module_path = os.path.abspath(abs_module_path)
             if os.path.exists(abs_module_path):
-                import_command = f"Import-Module '{abs_module_path}'; Show-LogsLogin"
+                import_command = (
+                    f"Import-Module '{abs_module_path}'; Show-LogsLogin"
+                    ) # import powershell module
                 help_command = [
                     "PowerShell",
                     "-Command",
