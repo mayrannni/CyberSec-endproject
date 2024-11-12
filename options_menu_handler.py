@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Manage main menu."""
 
 import argparse
@@ -16,16 +17,14 @@ def path_finder():
     return main_path
 
 
-def scripts_execution_info(root_path, filename):
+def scripts_execution_info(file_path):
     """Show hash and datetime."""
     # execution date
     get_date = datetime.datetime.now()
     date = get_date.strftime("%d-%m-%Y %H:%M:%S.%f")
     print("Script successfully completed its task at: %s" % date)
-    # file hash
-    path = root_path + filename
     try:
-        file_ob = open(path, "rb")
+        file_ob = open(file_path, "rb")
     except Exception:
         print("File Not Found.")
     else:
@@ -34,9 +33,10 @@ def scripts_execution_info(root_path, filename):
         hash_info = hashlib.sha512(file_to_hash)
         hash_value = hash_info.hexdigest()
         print(
-            "File HASH is: %s \n" % hash_value,
-            "Generated report PATH by script is: %s" % path,
+            ">> File HASH is: %s\n>> Generated report PATH by script is: %s"
+            % (hash_value, file_path)
         )
+        file_ob.close()
 
 
 def input_help_validator(help_command):
@@ -88,7 +88,10 @@ parser.add_argument(
     type=str,
 )
 parser.add_argument(
-    "-submenu_option", dest="submenu_option", help="Option to be selected from the main menu.", type=str
+    "-submenu_option",
+    dest="submenu_option",
+    help="Option to be selected from the main menu.",
+    type=str,
 )
 param = parser.parse_args()
 
@@ -96,85 +99,150 @@ operating_system = sys.platform
 if operating_system == "win32":
     if param.menu_option == "1":
         if param.submenu_option == "1":
-            filename = "\\PowerShell\\Get-PCInformation.psm1"
             main_path = path_finder()
-            secondary_path = main_path + filename
-            if os.path.exists(secondary_path):
-                help_command = ["PowerShell", secondary_path, "--help"]
+            module_path = os.path.join(
+                "CyberSec_Tasks", "PowerShell", "Get-PCInformation.psm1"
+            )
+            abs_module_path = os.path.join(main_path, module_path)
+            abs_module_path = os.path.abspath(abs_module_path)
+            if os.path.exists(abs_module_path):
+                # import powershell module
+                import_command = f"Import-Module '{abs_module_path}'; Get-PCInformation"
+                help_command = [
+                    "PowerShell",
+                    "-Command",
+                    "Get-Help -Name Get-PCInformation -Full",
+                ]
                 input_help_validator(help_command)
-                print("")
-                print("\n----------------------------------------- \n")
-                subprocess.run(
-                    ["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path]
+                print(
+                    "Hello ===================================================================="
                 )
-                name = "\\PowerShell\\ps-reports\\Get-PCInformation.html"
-                scripts_execution_info(main_path, name)
+                print(
+                    "Select the resources to be analysed, when the script is finished you will see the results in the report."
+                )
+                subprocess.run(["PowerShell", "-Command", import_command])
+                report_path = os.path.join(
+                    "CyberSec_Tasks",
+                    "PowerShell",
+                    "ps-reports",
+                    "Get-PCInformation.html",
+                )
+                abs_report_path = os.path.join(main_path, report_path)
+                abs_report_path = os.path.abspath(abs_report_path)
+                scripts_execution_info(abs_report_path)
             else:
-                print("File does not exist.")
-                time.sleep(2)
+                print("File does not exist. Sorry.")
+                time.sleep(1.5)
         elif param.submenu_option == "2":
-            filename = "\\PowerShell\\Request-ApiHashBased.psm1"
             main_path = path_finder()
-            secondary_path = main_path + filename
-            if os.path.exists(secondary_path):
-                help_command = ["PowerShell", secondary_path, "--help"]
+            module_path = os.path.join(
+                "CyberSec_Tasks", "PowerShell", "Request-ApiHashBased.psm1"
+            )
+            abs_module_path = os.path.join(main_path, module_path)
+            abs_module_path = os.path.abspath(abs_module_path)
+            if os.path.exists(abs_module_path):
+                import_command = (
+                    f"Import-Module '{abs_module_path}'; Request-ApiHashBased"
+                )
+                help_command = [
+                    "PowerShell",
+                    "-Command",
+                    "Get-Help -Name Request-ApiHashBased -Full",
+                ]
                 input_help_validator(help_command)
-                print("\n----------------------------------------- \n")
-                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path])
-                name = "\\PowerShell\\ps-reports\\Request-ApiHashBased.log"
-                scripts_execution_info(main_path, name)
+                print(
+                    "Hello ===================================================================="
+                )
+                subprocess.run(["PowerShell", "-Command", import_command])
+                report_path = os.path.join(
+                    "CyberSec_Tasks", "PowerShell", "ps-reports", "ReportVT.txt"
+                )
+                abs_report_path = os.path.join(main_path, report_path)
+                abs_report_path = os.path.abspath(abs_report_path)
+                scripts_execution_info(abs_report_path)
             else:
-                print("File does not exist.")
-                time.sleep(2)
+                print("File does not exist. Sorry.")
+                time.sleep(1.5)
         elif param.submenu_option == "3":
-            filename = "\\PowerShell\\Show-HiddenFiles.psm1"
             main_path = path_finder()
-            secondary_path = main_path + filename
-            if os.path.exists(secondary_path):
-                help_command = ["PowerShell", secondary_path, "--help"]
+            module_path = os.path.join(
+                "CyberSec_Tasks", "PowerShell", "Show-HiddenFiles.psm1"
+            )
+            abs_module_path = os.path.join(main_path, module_path)
+            abs_module_path = os.path.abspath(abs_module_path)
+            if os.path.exists(abs_module_path):
+                import_command = f"Import-Module '{abs_module_path}'; Show-HiddenFiles"
+                help_command = [
+                    "PowerShell",
+                    "-Command",
+                    "Get-Help -Name Show-HiddenFiles -Full",
+                ]
                 input_help_validator(help_command)
-                print("\n----------------------------------------- \n")
-                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path])
-                name = "\\PowerShell\\ps-reports\\Show-HiddenFiles.txt"
-                scripts_execution_info(main_path, name)
+                print(
+                    "Hello ===================================================================="
+                )
+                subprocess.run(["PowerShell", "-Command", import_command])
+                report_path = os.path.join(
+                    "CyberSec_Tasks", "PowerShell", "ps-reports", "Show-HiddenFiles.txt"
+                )
+                abs_report_path = os.path.join(main_path, report_path)
+                abs_report_path = os.path.abspath(abs_report_path)
+                scripts_execution_info(abs_report_path)
             else:
-                print("File does not exist.")
-                time.sleep(2)
+                print("File does not exist. Sorry.")
+                time.sleep(1.5)
         elif param.submenu_option == "4":
-            filename = "\\PowerShell\\Show-LogsLogin.psm1"
             main_path = path_finder()
-            secondary_path = main_path + filename
-            if os.path.exists(secondary_path):
-                help_command = ["PowerShell", secondary_path, "--help"]
+            module_path = os.path.join(
+                "CyberSec_Tasks", "PowerShell", "Show-LogsLogin.psm1"
+            )
+            abs_module_path = os.path.join(main_path, module_path)
+            abs_module_path = os.path.abspath(abs_module_path)
+            if os.path.exists(abs_module_path):
+                import_command = f"Import-Module '{abs_module_path}'; Show-LogsLogin"
+                help_command = [
+                    "PowerShell",
+                    "-Command",
+                    "Get-Help -Name Show-LogsLogin -Full",
+                ]
                 input_help_validator(help_command)
-                print("\n----------------------------------------- \n")
-                subprocess.run(["Powershell", "-ExecutionPolicy", "Bypass", "Import-Module", secondary_path])
-                name = "\\PowerShell\\ps-reports\\Show-LogsLogin.txt"
-                scripts_execution_info(main_path, name)
+                print(
+                    "Hello ===================================================================="
+                )
+                subprocess.run(["PowerShell", "-Command", import_command])
+                report_path = os.path.join(
+                    "CyberSec_Tasks", "PowerShell", "ps-reports", "Show-LogsLogin.txt"
+                )
+                abs_report_path = os.path.join(main_path, report_path)
+                abs_report_path = os.path.abspath(abs_report_path)
+                scripts_execution_info(abs_report_path)
             else:
-                print("File does not exist.")
-                time.sleep(2)
+                print("File does not exist. Sorry.")
+                time.sleep(1.5)
         else:
             print("Option is not within the established parameters.")
     elif param.menu_option == "2":
         print("You cannot run this option as your operating system is Windows.")
-        print("Redirecting to main menu... \n")
+        print("Redirecting to main menu...")
         time.sleep(2)
     elif param.menu_option == "3":
-        filename = "\\Python\\py_scripts_handler.py"
         main_path = path_finder()
-        secondary_path = main_path + filename
-        if os.path.exists(secondary_path):
-            subprocess.run("python", secondary_path, capture_output=True, text=True)
+        py_handler_file = os.path.join(
+            "CyberSec_Tasks", "Python", "py_scripts_handler.py"
+        )
+        abs_py_handler_file = os.path.join(main_path, py_handler_file)
+        abs_py_handler_file = os.path.abspath(abs_py_handler_file)
+        if os.path.exists(abs_py_handler_file):
+            subprocess.run(["python", abs_py_handler_file])
         else:
-            print("File does not exist.")
+            print("File does not exist. Sorry")
 elif operating_system == "linux":
     if param.menu_option == "1":
         print("You cannot run this option,", "as your OS is Linux.")
-        print("Redirecting to main menu...\n")
+        print("Redirecting to main menu...")
     elif param.menu_option == "2":
         if param.submenu_option == "1":
-            filename = r"/BASH/scanning.sh"
+            filename = r"/Bash/scanning.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
@@ -188,12 +256,12 @@ elif operating_system == "linux":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/BASH/bash-reports/port_scan.txt"
+                name = r"/Bash/bash-reports/port_scan.txt"
                 scripts_execution_info(main_path, name)
-                name = r"/BASH/bash-reports/vulnerabilities_scan.txt"
+                name = r"/Bash/bash-reports/vulnerabilities_scan.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
-            filename = r"/BASH/ssh_honeypot.sh"
+            filename = r"/Bash/ssh_honeypot.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
@@ -207,7 +275,7 @@ elif operating_system == "linux":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/BASH/bash-reports/ssh_honeypot.txt"
+                name = r"/Bash/bash-reports/ssh_honeypot.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "0":
             print("Back to main menu, bye!")
@@ -218,6 +286,7 @@ elif operating_system == "linux":
         filename = r"/Python/py_scripts_handler.py"
         main_path = path_finder()
         secondary_path = main_path + filename
+        print(secondary_path)
         if os.path.exists(secondary_path):
             subprocess.run("python", secondary_path, capture_output=True, text=True)
         else:
@@ -228,7 +297,7 @@ elif operating_system == "darwin":
         print("Redirecting to main menu...\n")
     elif param.menu_option == "2":
         if param.submenu_option == "1":
-            filename = r"/BASH/scanning.sh"
+            filename = r"/Bash/scanning.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
@@ -242,12 +311,12 @@ elif operating_system == "darwin":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/BASH/bash-reports/port_scan.txt"
+                name = r"/Bash/bash-reports/port_scan.txt"
                 scripts_execution_info(main_path, name)
-                name = r"/BASH/bash-reports/vulnerabilities_scan.txt"
+                name = r"/Bash/bash-reports/vulnerabilities_scan.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "2":
-            filename = r"/BASH/ssh_honeypot.sh"
+            filename = r"/Bash/ssh_honeypot.sh"
             main_path = path_finder()
             secondary_path = main_path + filename
             if os.path.exists(secondary_path):
@@ -261,7 +330,7 @@ elif operating_system == "darwin":
                     shell=True,
                     executable="/bin/bash",
                 )
-                name = r"/BASH/bash-reports/ssh_honeypot.txt"
+                name = r"/Bash/bash-reports/ssh_honeypot.txt"
                 scripts_execution_info(main_path, name)
         elif param.submenu_option == "0":
             print("Back to main menu, bye!")
@@ -269,7 +338,7 @@ elif operating_system == "darwin":
         else:
             print("Option is not within the established parameters.")
     elif param.menu_option == "3":
-        filename = r"/Python/py_scripts_handler.py"
+        filename = r"/Python/main_menu.py"
         main_path = path_finder()
         secondary_path = main_path + filename
         if os.path.exists(secondary_path):
