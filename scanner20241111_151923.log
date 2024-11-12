@@ -1,8 +1,0 @@
-INFO:root:C:\Users\Estrella\CyberSec-endproject\CyberSec-endproject\CyberSec_Tasks\Python\py-reports\VulnerabilityScanning.txt
-INFO:root:Checking if nmap is installed.
-INFO:root:Nmap is installed
-INFO:root:['nmap', '-p', '80', '--open', '-Pn', '-T4', '-sV', '--script', 'vuln', '8.8.8.8']
-INFO:root:powershell -Executionpolicy Bypass -Command nmap -p 80 --open -Pn -T4 -sV --script vuln 8.8.8.8
-INFO:root:Starting the process
-INFO:root:The nmap scan has completed successfully.
-INFO:root:The file has been successfully saved in: C:\Users\Estrella\CyberSec-endproject\CyberSec-endproject\CyberSec_Tasks\Python\py-reports\VulnerabilityScanning.txt.
