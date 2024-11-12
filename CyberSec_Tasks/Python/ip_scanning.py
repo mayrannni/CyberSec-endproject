@@ -7,6 +7,7 @@ import logging
 import os
 import re
 import subprocess
+import sys
 import webbrowser
 from py_scripts_handler import py_menu
 
@@ -50,11 +51,19 @@ def validate_port(ports):
 def vulnerability_scanning(param, path):
     """Return the target's vulnerabilities."""
     try:
+        operating_system = sys.platform 
         command = ['nmap', '-p', param.ports, '--open', '-Pn',
                    '-T4', '-sV', '--script',
                    'vuln', param.ip]
-        ps_line = 'powershell -Executionpolicy Bypass -Command ' + \
+        if operating_system =="win32":
+            ps_line = 'powershell -Executionpolicy Bypass -Command ' + \
                   ' '.join(command)
+        elif operating_system == "linux":
+            ps_line = 'bash -Command ' + ' '.join(command)
+        elif operating_system == "darwin":
+            ps_line = 'Bash -Command ' + ' '.join(command)
+        else: 
+            print("The operating system is not recognized...")
         results = subprocess.run(ps_line, capture_output=True, text=True)
         logging.info(command)
         logging.info(ps_line)
@@ -102,6 +111,7 @@ main_path = os.path.dirname(os.path.abspath(__file__))
 name = r'VulnerabilityScanning.txt'
 path = os.path.join(main_path, subfolder, name)
 abs_file_path = os.path.abspath(path)
+
 date = datetime.datetime.now()
 info = r'scanner'
 info += str(date.strftime('%Y%m%d_%H%M%S'))
@@ -110,20 +120,20 @@ info += '.log'
 logging.basicConfig(filename=f'{info}', level=logging.INFO)
 logging.info(path)
 
-
+#Check if Nmap is installed
 try:
     logging.info('Checking if nmap is installed.')
     result = subprocess.run(['Nmap', '--version'],
                             check=True, capture_output=True, text=True)
     nmap_exist = 'True'
 except (subprocess.CalledProcessError, FileNotFoundError):
+#Redirect to the installation page
     logging.info('nmap is not installed, redirecting to download page')
     install = webbrowser.open('https://nmap.org/download')
     logging.info(install)
     nmap_exist = 'False'
 
-
+#Run the function only if Nmap is installed
 if nmap_exist == 'True':
     logging.info('Nmap is installed')
     vulnerability_scanning(param, abs_file_path)
-
