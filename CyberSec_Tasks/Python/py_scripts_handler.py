@@ -128,12 +128,12 @@ def py_menu():
         for root, dirs, files in os.walk(main_path):
             for file in files:
                 if pattern.match(file):
-                    filename = f"\\{file}"
-        print(f"The file name created is {filename.replace('\\',"")}")
-        name = "\\py-reports"
-        name =+ filename
-        scripts_execution_info(main_path, name)
-
+                    file_name = file
+        print(f"The file name created is {file_name}")
+        web_pentest_report = os.path.join(main_path, "py-reports",file_name)
+        web_pentest_report = os.path.abspath(web_pentest_report)
+        scripts_execution_info(web_pentest_report)
+        py_menu()
     elif choice == "2":
         pyfile = os.path.join("open_ports.py")
         main_path = path_finder()
@@ -147,10 +147,23 @@ def py_menu():
         ip = input("Enter the IP to scan (e.g. '8.8.8.8'): ")
         subprocess.run(["python", "open_ports.py", "-ip", ip])
         # Show the file-generated info
-        print("The file name created is Full_API_Response.txt")
-        open_ports_report = os.path.join(main_path,"py-reports","Full_API_Response.txt")
-        scripts_execution_info(main_path, open_ports_report)
-
+        print("The files name created is: \n"
+              ">> open_ports_report.txt",
+              ">> open_ports_all_info.txt")
+        # Open ports report file
+        open_port_report = os.path.join(main_path,"py-reports", 
+                                        "open_ports_report.txt")
+        open_port_report = os.path.abspath(open_port_report)
+        scripts_execution_info(open_port_report)
+        print("-"*40)
+        # Full response from the API file
+        print("The file name with all info from the IP using the Shdan API"
+              "are created in open_ports_all_info.txt")
+        full_response_report = os.path.join(main_path,"py-reports",
+                                            "open_ports_all_info.txt")
+        full_response_report = os.path.abspath(full_response_report)
+        scripts_execution_info(full_response_report)
+        py_menu()
     elif choice == "3":
         pyfile = os.path.join("ip_inspector.py")
         main_path = path_finder()
@@ -181,19 +194,26 @@ def py_menu():
         )
         # Show the file-generated info
         main_path = path_finder()
-        print("The files name created is: \n"
+        print("The files name created are: \n"
               ">> check_ip.txt",
               ">> black_list.txt",
               ">> check_block.txt")
-        check_ip_report = os.path.join(main_path,"py-reports","check_ip.txt")
-        scripts_execution_info(check_ip_report)
+        # Show the file-generated info
+        # chek_ip.txt file
+        vuln_ip_report = os.path.join(main_path, "py-reports","check_ip.txt")
+        vuln_ip_report = os.path.abspath(vuln_ip_report)
+        scripts_execution_info(vul_ip_report)
         print("-"*40)
-        black_list_report = os.path.join(main_path,"py-reports","black_list.txt")
+        # black_list.txt
+        black_list_report = os.path.join(main_path, "py-reports","black_list_.txt")
+        black_list_report = os.path.abspath(black_list_report)
         scripts_execution_info(black_list_report)
         print("-"*40)
-        check_block_report = os.path.join(main_path,"py-reports","check_block.txt")
+        # check_block
+        check_block_report = os.path.join(main_path, "py-reports","check_block_.txt")
+        check_block_report = os.path.abspath(check_block_report)
         scripts_execution_info(check_block_report)
-
+        py_menu()
     elif choice == "4":
         pyfile = os.path.join("ip_scanning.py")
         main_path = path_finder()
@@ -210,12 +230,11 @@ def py_menu():
             ["python", abs_pyfile, "-ip", ip_nmap, "-ports", ports_range]
         )
         # Show the file-generated info
-        main_path = path_finder()
         print("The file name created is VulnerabilityScanning.txt")
         vul_scan_report = os.path.join(main_path, "py-reports","VulnerabilityScanning.txt")
         vul_scan_report = os.path.abspath(vul_scan_report)
         scripts_execution_info(vul_scan_report)
-
+        py_menu()
     elif choice == "5":
         pyfile = os.path.join("report_ip.py")
         main_path = path_finder()
@@ -229,7 +248,6 @@ def py_menu():
         file_path = os.path.join(main_path,"py-reports","VulnerabilityScanning.txt")
         subprocess.run(["python", abs_pyfile, "-file", file_path])
         # Show the file-generated info
-        main_path = path_finder()
         print("The file name created is report_ip.txt")
         ip_reports_report = os.path.join(main_path,"py-reports","report_ip.txt")
         scripts_execution_info(ip_reports_report)
