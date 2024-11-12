@@ -130,7 +130,7 @@ def py_menu():
                 if pattern.match(file):
                     file_name = file
         print(f"The file name created is {file_name}")
-        web_pentest_report = os.path.join(main_path, "py-reports",file_name)
+        web_pentest_report = os.path.join(main_path, "py-reports", file_name)
         web_pentest_report = os.path.abspath(web_pentest_report)
         scripts_execution_info(web_pentest_report)
         py_menu()
