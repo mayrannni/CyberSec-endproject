@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Take a url and scan its vulnerabilities with ZAP, return a html report."""
 
 import os

@@ -105,14 +105,14 @@ function Request-ApiHashBased {
         try {
             $GetHashes = Get-FileHash -Path $file.FullName -Algorithm SHA256
         } catch {
-            Write-Host -ForegroundColor Yellow "Failed to obtain the hash of $($file.FullName)"
+            Log-Message -Message "Failed to obtain the hash of $($file.FullName)" -Level "WARNING"
             continue
         }
 
         $hash = $GetHashes.Hash
         $url = "https://www.virustotal.com/api/v3/files/$hash"
 
-        if ($GetHashes -and $hash) {
+        if ($GetHashes -and $GetHashes.Hash) {
             try {
                 Log-Message -Message "Querying Virus Total API..."
                 $response = Invoke-RestMethod -Uri $url -Headers $Headers -Method Get

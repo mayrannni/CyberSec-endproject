@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """We use the API-IPAbuseDatabase.
 
 Check how reliable an IP is,
@@ -96,9 +97,9 @@ logging.basicConfig(filename=f'{info}',
 
 logging.info('Chek ip.')
 subfolder = r'py-reports'
-name1 = r'chek_ip_'
-name1 += '.txt'
-path1 = os.path.join(os.getcwd(), subfolder, name1)
+name1 = r'chek_ip.txt'
+main_path = os.path.dirname(os.path.abspath(__file__))
+path1 = os.path.join(main_path, subfolder, name1)
 logging.info('Check the given IP.')
 try:
     url = 'https://api.abuseipdb.com/api/v2/check'
@@ -128,9 +129,9 @@ except Exception as e:
     logging.error(f'An unexpected error occurred: {e}')
 
 logging.info('Blacklist')
-name2 = r'black_list_'
-name2 += '.txt'
-path2 = os.path.join(os.getcwd(), subfolder, name2)
+name2 = r'black_list.txt'
+main_path = os.path.dirname(os.path.abspath(__file__))
+path2 = os.path.join(main_path, subfolder, name2)
 logging.info('Extract a list of IPs depending on their confidence level.')
 try:
     url = 'https://api.abuseipdb.com/api/v2/blacklist'
@@ -160,9 +161,9 @@ except Exception as e:
 
 logging.info('Check Block')
 subfolder = r'py-reports'
-name3 = r'check_block_'
-name3 += '.txt'
-path3 = os.path.join(os.getcwd(), subfolder, name3)
+name3 = r'check_block.txt'
+main_path = os.path.dirname(os.path.abspath(__file__))
+path3 = os.path.join(main_path, subfolder, name3)
 logging.info('Scan an IP block.')
 try:
     url = 'https://api.abuseipdb.com/api/v2/check-block'

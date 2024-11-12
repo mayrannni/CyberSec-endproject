@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Take an ip and scan their open ports using Shodan API."""
 
 import logging
@@ -18,12 +19,11 @@ def validate_ip(ip):
         raise argparse.ArgumentTypeError(
             'The IP address given is invalid.'
             )
-    return ip
 
 
 # Generate a config for the file error
 logging.basicConfig(
-    filename="APIRequest_Errors.log",
+    filename="open_ports_api.log",
     format="%(asctime)s %(message)s",
     datefmt="%m/%d/%Y %H:%M:%S",
     level=logging.ERROR,

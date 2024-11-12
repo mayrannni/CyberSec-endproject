@@ -1,5 +1,5 @@
+#!/usr/bin/python3
 """Analyzes vulnerabilities that may exist in the target."""
-
 
 import argparse
 import datetime
@@ -62,7 +62,7 @@ def vulnerability_scanning(param, path):
         if results.returncode == 0:
             if results:
                 logging.info('The nmap scan has completed successfully.')
-                with open(f'{path}', 'a') as file:
+                with open(f'{path}', 'w') as file:
                     file.write(f'{results.stdout}')
                     logging.info(
                         f'The file has been successfully saved in: {path}.'
@@ -98,10 +98,10 @@ param = parser.parse_args()
 
 
 subfolder = r'py-reports'
-name = r'VulnerabilityScanning_'
-name += '.txt'
-path = os.path.join(os.getcwd(), subfolder, name)
-
+main_path = os.path.dirname(os.path.abspath(__file__))
+name = r'VulnerabilityScanning.txt'
+path = os.path.join(main_path, subfolder, name)
+abs_file_path = os.path.abspath(path)
 date = datetime.datetime.now()
 info = r'scanner'
 info += str(date.strftime('%Y%m%d_%H%M%S'))
@@ -125,6 +125,5 @@ except (subprocess.CalledProcessError, FileNotFoundError):
 
 if nmap_exist == 'True':
     logging.info('Nmap is installed')
-    vulnerability_scanning(param, path)
+    vulnerability_scanning(param, abs_file_path)
 
-py_menu()
